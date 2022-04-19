@@ -39,13 +39,13 @@ class ManagerTest {
         assertArrayEquals(expected,actual);
     }
     @Test
-    void shouldFindAllWithMoreSuitableTicketsInCorrectOrder() {
+    void shouldFindAllWithMoreSuitableTicketsInPriceOrder() {
         Ticket[] actual = manager.findAll("DME","EGO");
         Ticket[] expected = {third,first};
         assertArrayEquals(expected,actual);
     }
     @Test
-    void shouldFindAllIgnoringCaseInCorrectOrder() {
+    void shouldFindAllIgnoringCaseInPriceOrder() {
         Ticket[] actual = manager.findAll("dme","EgO");
         Ticket[] expected = {third,first};
         assertArrayEquals(expected,actual);
