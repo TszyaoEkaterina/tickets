@@ -1,12 +1,13 @@
 package ru.netology;
 
 import java.util.Arrays;
+import java.util.Comparator;
 
 import static java.util.Arrays.*;
 
 public class Manager {
     Repository repo = new Repository();
-
+    TicketByTravelTimeAscComparator comparator = new TicketByTravelTimeAscComparator();
     public Manager() {
     }
 
@@ -18,10 +19,10 @@ public class Manager {
         repo.removeById(id);
     }
 
-    public Ticket[] findAll(String from, String to) {
+    public Ticket[] findAll(String from, String to, Comparator<Ticket> comparator) {
         Ticket[] tickets = searchBy(from, to);
         if (tickets == null){throw new NotFoundException(from,to);}
-        Arrays.sort(tickets);
+        Arrays.sort(tickets,comparator);
         return tickets;
     }
 
