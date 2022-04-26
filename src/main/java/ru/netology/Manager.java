@@ -8,24 +8,27 @@ import static java.util.Arrays.*;
 public class Manager {
     Repository repo = new Repository();
     TicketByTravelTimeAscComparator comparator = new TicketByTravelTimeAscComparator();
+    
     public Manager() {
     }
-
+    
     public void add(Ticket newTicket) {
         repo.save(newTicket);
     }
-
+    
     public void removeById(int id) {
         repo.removeById(id);
     }
-
+    
     public Ticket[] findAll(String from, String to, Comparator<Ticket> comparator) {
         Ticket[] tickets = searchBy(from, to);
-        if (tickets == null){throw new NotFoundException(from,to);}
-        Arrays.sort(tickets,comparator);
+        if (tickets == null) {
+            throw new NotFoundException(from, to);
+        }
+        Arrays.sort(tickets, comparator);
         return tickets;
     }
-
+    
     public Ticket[] searchBy(String from, String to) {
         Ticket[] tmpResults = new Ticket[0];
         for (Ticket ticket : repo.findAll()) {
